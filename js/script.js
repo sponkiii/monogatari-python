@@ -93,6 +93,10 @@ monogatari.characters ({
         expressions: {
             happy: 'expressions/minion-happy.png',
         }
+	},
+	'p': {
+		name: '{{player.name}}',
+		color: '#07f6cc',
 	}
 });
 
@@ -131,11 +135,11 @@ monogatari.script ({
 		'clear',
 		'y hello madafaka {{player.name}} Welcome to Monogatari!',
 		't:happy sup betchie boi',
-		'player Where am I?',
+		'p Where am I?',
 		'y You are now at the python world',
 		'y you have been chosen by the great snake to save our world',
 		't:happy Datebayoo~',
-		'player but why me?',
+		'p but why me?',
 		'y just shut up and save our world nigguh',
 		// intro:
 		// select character (M/F)

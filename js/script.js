@@ -81,7 +81,7 @@ monogatari.characters ({
 	},
 	't': {
 		name: 'Datebayo',
-		color: '#orange',
+		color: '#ffa500',
 		directory: 'minion', 
         sprites: {
             angry: 'normal.png',
@@ -99,11 +99,10 @@ monogatari.characters ({
 monogatari.script ({
 	// The game starts here.
 	'Start': [
-		'show scene #f7f6f6 with fadeIn',
 		'show notification Welcome',
 		{
 			'Input': {
-				'Text': 'What is your name?',
+				'Text': 'Enter your name:',
 				'Validation': function (input) {
 					return input.trim ().length > 0;
 				},
@@ -125,38 +124,90 @@ monogatari.script ({
 				'Warning': 'You must enter a name!'
 			}
 		},
-		'y Hi {{player.name}} Welcome to Monogatari!',
-		't:happy SASUKEE!!!!! datebayo~',
-		{
-			'Choice': {
-				'Dialog': 'y Have you already read some documentation?',
-				'Yes': {
-					'Text': 'Yes',
-					'Do': 'jump Yes'
-				},
-				'No': {
-					'Text': 'No',
-					'Do': 'jump No'
-				}
-			}
-		}
-	],
-
-	'Yes': [
-		'y Thats awesome!',
-		'y Then you are ready to go ahead and create an amazing Game!',
-		'y I can’t wait to see what story you’ll tell!',
-		'end'
-	],
-
-	'No': [
-
-		'y You can do it now.',
-
-		'show message Help',
-
-		'y Go ahead and create an amazing Game!',
-		'y I can’t wait to see what story you’ll tell!',
-		'end'
+		'centered What if...',
+		'centered one day, you woke up in a whole different world?...',
+		'centered Would you be able to face all the challenges to escape and go back to your own world?',
+		'centered ...Or would you stay there forever?',
+		'clear',
+		'y hello madafaka {{player.name}} Welcome to Monogatari!',
+		't:happy sup betchie boi',
+		'player Where am I?',
+		'y You are now at the python world',
+		'y you have been chosen by the great snake to save our world',
+		't:happy Datebayoo~',
+		'player but why me?',
+		'y just shut up and save our world nigguh',
+		// intro:
+		// select character (M/F)
+		// input name
+		// nakagat ng ahas 
+		// tas napunta sa python world
+		// kilala ung SC na pusa
+		// intro ng bat ganon nag sasalita
+		// na napunta sya sa python world
+		// INTRO to str and int DATA TYPE:----------
+		// isang violent creature appeared
+		// need to put variable and data type to free the creature
 	]
 });
+
+// 'show scene #f7f6f6 with fadeIn',
+// 		'show notification Welcome',
+// 		{
+// 			'Input': {
+// 				'Text': 'What is your name?',
+// 				'Validation': function (input) {
+// 					return input.trim ().length > 0;
+// 				},
+// 				'Save': function (input) {
+// 					this.storage ({
+// 						player: {
+// 							name: input
+// 						}
+// 					});
+// 					return true;
+// 				},
+// 				'Revert': function () {
+// 					this.storage ({
+// 						player: {
+// 							name: ''
+// 						}
+// 					});
+// 				},
+// 				'Warning': 'You must enter a name!'
+// 			}
+// 		},
+// 		'y Hi {{player.name}} Welcome to Monogatari!',
+// 		't:happy SASUKEE!!!!! datebayo~',
+// 		{
+// 			'Choice': {
+// 				'Dialog': 'y Have you already read some documentation?',
+// 				'Yes': {
+// 					'Text': 'Yes',
+// 					'Do': 'jump Yes'
+// 				},
+// 				'No': {
+// 					'Text': 'No',
+// 					'Do': 'jump No'
+// 				}
+// 			}
+// 		}
+// 	],
+
+// 	'Yes': [
+// 		'y Thats awesome!',
+// 		'y Then you are ready to go ahead and create an amazing Game!',
+// 		'y I can’t wait to see what story you’ll tell!',
+// 		'end'
+// 	],
+
+// 	'No': [
+
+// 		'y You can do it now.',
+
+// 		'show message Help',
+
+// 		'y Go ahead and create an amazing Game!',
+// 		'y I can’t wait to see what story you’ll tell!',
+// 		'end'
+// 	]

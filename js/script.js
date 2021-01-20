@@ -78,6 +78,21 @@ monogatari.characters ({
 	'y': {
 		name: 'Yui',
 		color: '#5bcaff'
+	},
+	't': {
+		name: 'Datebayo',
+		color: '#orange',
+		directory: 'minion', 
+        sprites: {
+            angry: 'normal.png',
+            happy: 'minion-happy.png',
+            normal: 'normal.png',
+            sad: 'sad.png',
+            surprised: 'surprised.png',
+        },
+        expressions: {
+            happy: 'expressions/minion-happy.png',
+        }
 	}
 });
 
@@ -111,6 +126,7 @@ monogatari.script ({
 			}
 		},
 		'y Hi {{player.name}} Welcome to Monogatari!',
+		't:happy SASUKEE!!!!! datebayo~',
 		{
 			'Choice': {
 				'Dialog': 'y Have you already read some documentation?',

@@ -69,7 +69,8 @@ monogatari.assets ('images', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
-
+	'bedroom': 'bedroom-scene.png',
+    'street': 'Street-scene.png',
 });
 
 
@@ -79,7 +80,7 @@ monogatari.characters ({
 		name: 'Yui',
 		color: '#5bcaff'
 	},
-	't': {
+	's': {
 		name: 'Datebayo',
 		color: '#ffa500',
 		directory: 'minion', 
@@ -103,6 +104,11 @@ monogatari.characters ({
 monogatari.script ({
 	// The game starts here.
 	'Start': [
+		'centered What if...',
+		'centered one day, you woke up in a whole different world?...',
+		'centered Would you be able to face all the challenges to escape and go back to your own world?',
+		'centered ...Or would you stay there forever?',
+		'clear',
 		'show notification Welcome',
 		{
 			'Input': {
@@ -128,30 +134,43 @@ monogatari.script ({
 				'Warning': 'You must enter a name!'
 			}
 		},
-		'centered What if...',
-		'centered one day, you woke up in a whole different world?...',
-		'centered Would you be able to face all the challenges to escape and go back to your own world?',
-		'centered ...Or would you stay there forever?',
-		'clear',
-		'y hello madafaka {{player.name}} Welcome to Monogatari!',
-		't:happy sup betchie boi',
+		'centered *ALARM RINGING!!*',
+		'show background bedroom with headShake',
+		'p oh CRAP! I’m late for school!!',
+		'enter short prep scene',
+		'show background street with wobble',
+		'p Later, Mom!',
+		'p: ahhhhhhhhhhhh',
+		'enter snake bite scene',
+		'show background street with fadeOut 5s',
+		'p: shit...',
+		'show scene #000000 with flash',
+		'centered 3 days later...',
+		'p: Where am I?..',
+		'p: Who are you?..',
+		'p: WAAAHH!..',
+		'y: hello madafaka {{player.name}} Welcome to Monogatari!',
+		's:happy hello, hooman! I saw you lying on the street.',
+		'p: What happened?!',
+		'p: How did I get here?!',
+		's:happy Maybe you’re his 5th victim, hooman.',
 		'p Where am I?',
-		'y You are now at the python world',
+		's:happy You are now at the python world',
+		's:happy For you to get back to your real world, you have to take up the challenges about the PYTHON PROGRAMMING LANGUAGE to defeat the bad snake',
+		'p What if I didn\'t do any of those?',
+		's:happy …then you will be stuck here. FOREVER.',
+		'p whaat?? *shocked face* ', 
 		'y you have been chosen by the great snake to save our world',
-		't:happy Datebayoo~',
+		's:happy Datebayoo~',
 		'p but why me?',
 		'y just shut up and save our world nigguh',
-		// intro:
-		// select character (M/F)
-		// input name
-		// nakagat ng ahas 
-		// tas napunta sa python world
-		// kilala ung SC na pusa
-		// intro ng bat ganon nag sasalita
-		// na napunta sya sa python world
-		// INTRO to str and int DATA TYPE:----------
-		// isang violent creature appeared
-		// need to put variable and data type to free the creature
+		// =======Ricah part input=====
+
+
+		// =========arvin scene boolean=====
+		
+
+		
 	]
 });
 
@@ -215,3 +234,23 @@ monogatari.script ({
 // 		'y I can’t wait to see what story you’ll tell!',
 // 		'end'
 // 	]
+
+// intro:
+		// select character (M/F)
+		// input name
+		// nakagat ng ahas 
+		// 'show character s normal at center with fadeIn',
+		// tas napunta sa python world
+		// kilala ung SC na pusa
+		// intro ng bat ganon nag sasalita
+		// na napunta sya sa python world
+		// INTRO to str and int DATA TYPE:----------
+		// isang violent creature appeared
+		// need to put variable and data type to free the creature
+
+		// 1st topic and game is:
+		// type ng data types srt, int
+		// 2nd topic:
+		// boolean values, true or false ung choice of answers nila
+		// 3rd topic:
+		// List, game huhulaan ung output sa binigay na codes to open gate

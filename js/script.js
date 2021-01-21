@@ -77,7 +77,7 @@ monogatari.assets ('scenes', {
 // Define the Characters
 monogatari.characters ({
 	'y': {
-		name: 'Catto',
+		name: 'Yui',
 		color: '#5bcaff'
 	},
 	's': {
@@ -165,100 +165,14 @@ monogatari.script ({
 		'p but why me?',
 		'y just shut up and save our world nigguh',
 		// =======Ricah part input=====
-		'background ng different world',
-		'y Hello, {{player.name}}! I will be the one assisting you on your challenges.',
-		
 
-				{
-					'Choice': {
-							'Dialog': 'y Do you know what Python Programming is?',
-						'Yes': {
-							'Text': 'Yes',
-							'Do': 'jump Yes'
-							},
-							'No': {
-								'Text': 'No',
-								'Do': 'jump No'
-							},
-						},
-				},	
-		],
-						'afterChoice': [
-							'*violent creatures appears*',
-							'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
-							'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
-							'p SOUNDS AWESOME!',
-							'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
-			
 
-							{
-								'Choice': {
-										'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
-									'Complex': {
-										'Text': 'Complex',
-										'Do': 'jump Complex'
-										},
-									'Float': {
-										'Text': 'Float',
-										'Do': 'jump Float'
-										},
-									'Int': {
-										'Text': 'Int',
-										'Do': 'jump Int'
-									}
-									},
-							},	
-
-						],
-						'QuestionAgain':[
-							'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
-			
-
-							{
-								'Choice': {
-										'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
-									'Complex': {
-										'Text': 'Complex',
-										'Do': 'jump Complex'
-										},
-									'Float': {
-										'Text': 'Float',
-										'Do': 'jump Float'
-										},
-									'Int': {
-										'Text': 'Int',
-										'Do': 'jump Int'
-									}
-									},
-							},	
-
-						],
-				'Yes': [
-					'y HOOMAN! Your first challenge is python casting! You have to put the right data types on the variables!!',
-					'jump afterChoice',
-				],
-					
-				'No': [
-					
-					'y 	It is popular programming language',
-					'y  used for web development (server-side), software development, mathematics, system scripting. You can look here to know more: Link',
-					'jump afterChoice',
-				],
-				'Complex': [
-					'y Oh no! think again',
-					'jump QuestionAgain',
-				],
-				'Float':[
-					'y You got it right, {{player.name}}!',
-
-				],
-				'Int': [
-					'y Oh no! think again',
-					'jump QuestionAgain',
-				],
-
-		
 		// =========arvin scene boolean=====
+		
+			
+		
+
+	]
 });
 
 // 'show scene #f7f6f6 with fadeIn',

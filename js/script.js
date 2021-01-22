@@ -44,6 +44,8 @@ monogatari.assets ('gallery', {
 
 // Define the music used in the game.
 monogatari.assets ('music', {
+	'mainBG': 'bgmusic1.mp3',
+	'mainBG2': 'bgmusic2.mp3',
 
 });
 
@@ -56,6 +58,7 @@ monogatari.assets ('voices', {
 monogatari.assets ('sounds', {
 	'alarm': 'alarm.mp3',
 	'snake': 'snake.mp3',
+	'st': 'street.mp3',
 
 });
 
@@ -72,7 +75,9 @@ monogatari.assets ('images', {
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
 	'bedroom': 'bedroom-scene.png',
-    'street': 'Street-scene.png',
+	'street': 'Street-scene.png',
+	'fantasy': 'pythonworld.gif',
+	
 });
 
 
@@ -85,6 +90,7 @@ monogatari.characters ({
 		sprites:{
 			happy: 'catto-happy.png',
 			sad: 'catto-sad.png',
+			default: 'expressions/catto.png',
 			angry: 'catto-angry.png',
 			shocked: 'catto-shocked.png',
 			dissapointed: 'catto-dissapointed.png',
@@ -122,7 +128,7 @@ monogatari.characters ({
 			happy: 'main-girl-happy.jpg',
 			sad: 'main-girl-sad.jpg',
 			angry: 'main-girl-angry.jpg',
-			default: 'main-girl-default.jpg',
+			normal: 'main-girl-default.jpg',
 			shocked: 'main-girl-shocked.jpg',
 			dissapointed: 'main-girl-dissapointed.jpg',
 		},
@@ -130,9 +136,11 @@ monogatari.characters ({
 			happy: 'expressions/main-girl-happy.jpg',
 			sad: 'expressions/main-girl-sad.jpg',
 			angry: 'expressions/main-girl-angry.jpg',
+			normal: 'expressions/main-girl-default.jpg',
 			shocked: 'expressions/main-girl-shocked.jpg',
 			dissapointed: 'expressions/main-girl-dissapointed.jpg',
 		},
+		default_expression: 'normal',
 
 	}
 });
@@ -174,38 +182,50 @@ monogatari.script ({
 		'centered *ALARM RINGING!!*',
 		'show background bedroom with headShake',
 		'stop sound alarm',
-		'p oh CRAP! I’m late for school!!',
+		'play music mainBG with volume 50 loop',
+		'p:shocked oh CRAP! I’m late for school!!',
+		'play sound st with volume 100',
 		'enter short prep scene',
 		'show background street with wobble',
-		'p Later, Mom!',
-		'p: ahhhhhhhhhhhh',
-		'play sound snake',
+		'p:happy Later, Mom!',
+		'p:shocked ahhhhhhhhhhhh',
+		'play sound snake with volume 100',
 		'enter snake bite scene',
 		'show background street with fadeOut 5s',
-		'p: shit...',
+		'p:shocked shit...',
+		'stop music mainBG fade 2',
 		'show scene #000000 with flash',
 		'centered 3 days later...',
-		'p: Where am I?..',
-		'p: Who are you?..',
-		'p: WAAAHH!..',
-		'y: hello madafaka {{player.name}} Welcome to Monogatari!',
-		's:happy hello, hooman! I saw you lying on the street.',
-		'p: What happened?!',
-		'p: How did I get here?!',
-		's:happy Maybe you’re his 5th victim, hooman.',
-		'p Where am I?',
-		's:happy You are now at the python world',
-		's:happy For you to get back to your real world, you have to take up the challenges about the PYTHON PROGRAMMING LANGUAGE to defeat the bad snake',
-		'p What if I didn\'t do any of those?',
-		's:happy …then you will be stuck here. FOREVER.',
-		'p whaat?? *shocked face* ', 
-		'y you have been chosen by the great snake to save our world',
-		's:happy Datebayoo~',
-		'p but why me?',
-		'y just shut up and save our world nigguh',
+		'show background fantasy with fadeIn',
+		'show character y default with fadeIn',
+		'y:happy hello, hooman!',
+		'p:shocked Where am I?..',
+		'p:shocked Who are you?..',
+		'p:shocked WAAAHH!..',
+		'y: Let\'s start again. Hello {{player.name}} Welcome to Monogatari!',
+		'y:happy hello, hooman! I saw you lying on the street.',
+		'p:shocked What happened?!',
+		'p:shocked How did I get here?!',
+		'y:happy You must have been his 5th victim for this month, hooman.',
+		'p:angry Where am I?!',
+		'y:happy You are now at the python world',
+		'y:happy For you to get back to your real world, you have to take up the challenges about the PYTHON PROGRAMMING LANGUAGE to defeat the bad snake',
+		'p:shocked What happens if I didn\'t do any of those?',
+		'y:happy …then you will be stuck here. FOREVER.',
+		'p:shocked NANIII!!??', 
+		'y you have been bitten by the great snake to try your skills in python by bringin you in this world',
+		'p:sad but why me?',
+		'y I\'m pretty sure it\'s for no good reason',
+		'y You just happen to cross paths',
+		'y:happy But hey look on the good side... You\'ll be learn some new things about python',
+		'p Well if you put it that way...',
+		'p:happy It\'ll give me more skills for my resume!',
+		'show background fantasy with fadeOut 5s',
+		'show character y default with fadeOut 5s',
 		// =======Ricah part input=====
-		'background ng different world',
-		'y Hello, {{player.name}}! I will be the one assisting you on your challenges.',
+		'y Hello, again {{player.name}}! I will be the one assisting you on your challenges.',
+		'show character y default with fadeIn',
+		'show background fantasy with fadeIn',
 		
 
 				{
@@ -225,7 +245,7 @@ monogatari.script ({
 						'afterChoice': [
 							'*violent creatures appears*',
 							'y:worried oh no! {{player.name}}, make them disappear!',
-							'y:worried to do that, you have to input the right answers',
+							'y:worried to do that, you have to use the variable on their body and assign them with their right data types',
 
 							'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
 							'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
@@ -291,13 +311,13 @@ monogatari.script ({
 		'boolean-scene':[
 			'y Now...',
 			'y For the next topic, I\'ll teach you about Booleans.',
-			'p SWEEET!',
+			'p:happy SWEEET!',
 			'y Are you ready {{player.name}}?',
-			'p READY!!!',
+			'p:happy READY!!!',
 			'y:happy ALRIGHT!!',
 			'y Now.. Let me tell you a thing about booleans',
 			'y Booleans only represent one of two values which are: TRUE or FALSE.',
-			'p NANI?! It only gives us True or False?',
+			'p:shocked NANI?! It only gives us True or False?',
 			'y Yes',
 			'p Seems kinda useless don\'t you think?..',
 			'y In programming you often need to know if an expression is True or False.',
@@ -319,9 +339,9 @@ monogatari.script ({
 			'y "=="	Equal, This ask the question are both value equal to each other?',
 			'y "!="	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
 			'y ">"	Greater than, Asks the question is the first value greater than the second value?',
-			'y "<"	Less than	x < y, Asks the question is the first value lesser than the second value? ', 
+			'y "\<"	Less than	x < y, Asks the question is the first value lesser than the second value? ', 
 			'y ">="	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
-			'y "<="	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
+			'y "\<="	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
 			'p:sad I hope that\'s everything I need to know... ',
 			'y:happy Don\'t be silly we have three more things you need to know',
 			'p:shocked WAAAAH!!!... ',
@@ -332,7 +352,9 @@ monogatari.script ({
 			'p Python Logical What Now?!',
 			'y Python Logical Operators',
 			'y These logical operators are used to combine conditional statements',
-			'y such as: (x < 5 and  x < 10)\, (x < 5 or x < 4)\, not(x < 5 and x < 10)',
+			'y such as (x \< 5 and  x \< 10)',
+			'y (x \< 5 or x \< 4)',
+			'y including not(x \< 5 and x \< 10)',
 			'y and 	Returns boolean value type True if both statements are true',
 			'y or	Returns boolean value type True if one of the statements is true',
 			'y not	Reverse the result, returns False if the result is true',

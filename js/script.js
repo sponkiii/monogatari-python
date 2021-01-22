@@ -54,6 +54,8 @@ monogatari.assets ('voices', {
 
 // Define the sounds used in the game.
 monogatari.assets ('sounds', {
+	'alarm': 'alarm.mp3',
+	'snake': 'snake.mp3',
 
 });
 
@@ -134,13 +136,16 @@ monogatari.script ({
 				'Warning': 'You must enter a name!'
 			}
 		},
+		'play sound alarm',
 		'centered *ALARM RINGING!!*',
 		'show background bedroom with headShake',
+		'stop sound alarm',
 		'p oh CRAP! I’m late for school!!',
 		'enter short prep scene',
 		'show background street with wobble',
 		'p Later, Mom!',
 		'p: ahhhhhhhhhhhh',
+		'play sound snake',
 		'enter snake bite scene',
 		'show background street with fadeOut 5s',
 		'p: shit...',
@@ -185,9 +190,12 @@ monogatari.script ({
 		],
 						'afterChoice': [
 							'*violent creatures appears*',
+							'y:worried oh no! {{player.name}}, make them disappear!',
+							'y:worried to do that, you have to input the right answers',
+
 							'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
 							'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
-							'p SOUNDS AWESOME!',
+							'p:happy SOUNDS AWESOME!',
 							'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
 			
 
@@ -233,8 +241,13 @@ monogatari.script ({
 							},	
 
 						],
+						'AfterAnswer':[
+							'y Now that you have an idea about numeric types. Let’s move on to “Strings”.',
+							'y In python, strings is surrounded by single/double quotation marks. For example: “hello” and ‘Hello’ are both correct.',
+							'p:happy Ahh! I see.',
+						],
 				'Yes': [
-					'y HOOMAN! Your first challenge is python casting! You have to put the right data types on the variables!!',
+					'y Because you already know what Python programming is, your first challenge is to put the right data types on the variables!',
 					'jump afterChoice',
 				],
 					
@@ -245,15 +258,16 @@ monogatari.script ({
 					'jump afterChoice',
 				],
 				'Complex': [
-					'y Oh no! think again',
+					'y:sad Oh no! think again',
 					'jump QuestionAgain',
 				],
 				'Float':[
-					'y You got it right, {{player.name}}!',
+					'y:happy You got it right, {{player.name}}!',
+					'jump AfterAnswer',
 
 				],
 				'Int': [
-					'y Oh no! think again',
+					'y:sad Oh no! think again',
 					'jump QuestionAgain',
 				],
 

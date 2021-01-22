@@ -77,8 +77,25 @@ monogatari.assets ('scenes', {
 // Define the Characters
 monogatari.characters ({
 	'y': {
-		name: 'Yui',
-		color: '#5bcaff'
+		name: 'Catto',
+		color: '#5bcaff',
+		directory: 'catto',
+		sprites:{
+			happy: 'catto-happy.png',
+			sad: 'catto-sad.png',
+			angry: 'catto-angry.png',
+			shocked: 'catto-shocked.png',
+			dissapointed: 'catto-dissapointed.png',
+		},
+		expressions:{
+			happy: 'expressions/catto-happy.png',
+			sad: 'expressions/catto-sad.png',
+			angry: 'expressions/catto-angry.png',
+			shocked: 'expressions/catto-shocked.png',
+			dissapointed: 'expressions/catto-dissapointed.png',
+			scat: 'expressions/scat.jpeg',
+		},
+
 	},
 	's': {
 		name: 'Datebayo',
@@ -93,7 +110,7 @@ monogatari.characters ({
         },
         expressions: {
             happy: 'expressions/minion-happy.png',
-        }
+        },
 	},
 	'p': {
 		name: '{{player.name}}',
@@ -165,14 +182,223 @@ monogatari.script ({
 		'p but why me?',
 		'y just shut up and save our world nigguh',
 		// =======Ricah part input=====
-
-
-		// =========arvin scene boolean=====
+		'background ng different world',
+		'y Hello, {{player.name}}! I will be the one assisting you on your challenges.',
 		
+
+				{
+					'Choice': {
+							'Dialog': 'y Do you know what Python Programming is?',
+						'Yes': {
+							'Text': 'Yes',
+							'Do': 'jump Yes'
+							},
+							'No': {
+								'Text': 'No',
+								'Do': 'jump No'
+							},
+						},
+				},	
+		],
+		'afterChoice': [
+			'*violent creatures appears*',
+			'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
+			'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
+			'p SOUNDS AWESOME!',
+			'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
+
+
+			{
+				'Choice': {
+						'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
+					'Complex': {
+						'Text': 'Complex',
+						'Do': 'jump Complex'
+						},
+					'Float': {
+						'Text': 'Float',
+						'Do': 'jump Float'
+						},
+					'Int': {
+						'Text': 'Int',
+						'Do': 'jump Int'
+					}
+					},
+			},	
+
+		],
+		'QuestionAgain':[
+			'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
+
+
+			{
+				'Choice': {
+						'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
+					'Complex': {
+						'Text': 'Complex',
+						'Do': 'jump Complex'
+						},
+					'Float': {
+						'Text': 'Float',
+						'Do': 'jump Float'
+						},
+					'Int': {
+						'Text': 'Int',
+						'Do': 'jump Int'
+					}
+					},
+			},	
+
+		],
+		'Yes': [
+			'y HOOMAN! Your first challenge is python casting! You have to put the right data types on the variables!!',
+			'jump afterChoice',
+		],
+					
+		'No': [
 			
-		
+			'y 	It is popular programming language',
+			'y  used for web development (server-side), software development, mathematics, system scripting. You can look here to know more: Link',
+			'jump afterChoice',
+		],
+		'Complex': [
+			'y Oh no! think again',
+			'jump QuestionAgain',
+		],
+		'Float':[
+			'y You got it right, {{player.name}}!',
+			'jump boolean-scene',
 
-	]
+		],
+		'Int': [
+			'y Oh no! think again',
+			'jump QuestionAgain',
+		],
+
+		
+		// =========arvin scene boolean=====
+		'boolean-scene':[
+			'y Now...',
+			'y For the next topic, I\'ll teach you about Booleans.',
+			'p SWEEET!',
+			'y Are you ready {{player.name}}?',
+			'p READY!!!',
+			'y:happy ALRIGHT!!',
+			'y Now.. Let me tell you a thing about booleans',
+			'y Booleans only represent one of two values which are: TRUE or FALSE.',
+			'p NANI?! It only gives us True or False?',
+			'y Yes',
+			'p Seems kinda useless don\'t you think?..',
+			'y In programming you often need to know if an expression is True or False.',
+			'y That\'s why this one plays a big part for your coding.',
+			'y now before we move on to your next challenge I\'ll have to let you know about Python Comparison Operators',
+			'p What are they?',
+			'y:happy Glad you asked.. So.. ',
+			'y Comparison operators are used to compare two values',
+			'y Remember at the first challenge where we assign values?',
+			'p Yes?',
+			'y:happy Well a signle equal(=) sign is used to assign values.',
+			'y:happy While using a double equal signs(==) is used for comparing values',
+			'y:happy And this is where the booleans comes into actions',
+			'y boolean will return a True value only if the conditions are being satisfied',
+			'y ..and returns False value if it dont',
+			'p WOAAAAAW!!',
+			'y:happy I KNOW RIGHT?!',
+			'y here are different types of Comparison operators',
+			'y ==	Equal, This ask the question are both value equal to each other?',
+			'y !=	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
+			'y >	Greater than, Asks the question is the first value greater than the second value?',
+			'y <	Less than	x < y, Asks the question is the first value lesser than the second value? ', 
+			'y >=	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
+			'y <=	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
+			'p:sad I hope that\'s everything I need to know... ',
+			'y:happy Don\'t be silly we have three more things you need to know',
+			'p:shocked WAAAAH!!!... ',
+			'p all right let\'s just get over this so I could go back home to my real world.',
+			'y I know you can do this. I believe in you',
+			'y Let\'s get back to buisness',
+			'y The Last three things you need to know is about Python Logical Operators',
+			'p Python Logical What Now?!',
+			'y Python Logical Operators',
+			'y These logical operators are used to combine conditional statements',
+			'y such as: x < 5 and  x < 10, x < 5 or x < 4, not(x < 5 and x < 10)',
+			'y and 	Returns boolean value type True if both statements are true',
+			'y or	Returns boolean value type True if one of the statements is true',
+			'y not	Reverse the result, returns False if the result is true',
+			'p I get it now',
+			'p Let\'s begin on to the next challenge then.',
+			'y:happy Alright! Now let\'s see if you can tell what value will the boolean will be returning with the expressions',
+			'insert first equation photo',
+
+			{
+				'Choice': {
+						'Dialog': 'y tell me what value will it return with the expression (10 == "are you sure about it?")',
+					'True': {
+						'Text': 'True',
+						'Do': 'jump b1-True'
+						},
+					'False': {
+						'Text': 'False',
+						'Do': 'jump b1-False'
+						},
+					},
+			},	
+		],
+		'b1-True': [
+			'y:dissapointed ohhhhhh.... you dummy.',
+			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
+			'y Remember.. booleans will only return True if the comparison of two values are the same',
+			'y Let\'s try that one more time',
+			'jump second-b-Question',
+		],
+			
+		'b1-False': [
+			
+			'y:happy GREAT WORK!',
+			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
+			'y It\'s allright let\'s go to the next one',
+			'jump second-b-Question',
+		],
+		'second-b-Question':[
+			'set bg with new question',
+			'y:happy Here we go!',
+			'p:sad Ohh boy... here we go again',
+			'y: HAHAHA! Silly you can do it. Good luck!',
+			{
+				'Choice': {
+						'Dialog': 'y what value will it return with the expression (10==10.0)?',
+					'True': {
+						'Text': 'True',
+						'Do': 'jump b2-True'
+						},
+					'False': {
+						'Text': 'False',
+						'Do': 'jump b2-False'
+						},
+					},
+			},
+		],
+		'b2-True': [
+			'y:happy GOOD JOB!',
+			'y You\'re getting better at this',
+			'y The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
+			'y:happy LET\'s GO TO THE NEXT ONE TO BRING YOU BACK TO YOUR WORLD!',
+			'jump third-b-Question',
+		],
+			
+		'b2-False': [
+			'y:scat GREAT SCAAAT!',
+			'y:dissapointed Did you even listen to any of my teachings earlier?',
+			'y:dissapointed The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
+			'y Remember.. booleans will only return True if the comparison of two values are the same',
+			'y:happy LET\'s KEEP GOING TO GET YOU BACK TO YOUR OWN WORLD!',
+			'y Don\'t give up',
+			'jump third-b-Question',
+		],
+		'third-b-Question':[
+
+		],
+
 });
 
 // 'show scene #f7f6f6 with fadeIn',

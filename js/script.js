@@ -44,6 +44,8 @@ monogatari.assets ('gallery', {
 
 // Define the music used in the game.
 monogatari.assets ('music', {
+	'mainBG': 'bgmusic1.mp3',
+	'mainBG2': 'bgmusic2.mp3',
 
 });
 
@@ -56,6 +58,7 @@ monogatari.assets ('voices', {
 monogatari.assets ('sounds', {
 	'alarm': 'alarm.mp3',
 	'snake': 'snake.mp3',
+	'st': 'street.mp3',
 
 });
 
@@ -72,7 +75,9 @@ monogatari.assets ('images', {
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
 	'bedroom': 'bedroom-scene.png',
-    'street': 'Street-scene.png',
+	'street': 'Street-scene.png',
+	'fantasy': 'pythonworld.gif',
+	
 });
 
 
@@ -80,7 +85,11 @@ monogatari.assets ('scenes', {
 monogatari.characters ({
 	'y': {
 		name: 'Catto',
-		color: '#5bcaff'
+		color: '#5bcaff',
+		directory: 'catto',
+		sprites:{
+			default: 'expressions/catto.png',
+		},
 	},
 	's': {
 		name: 'Datebayo',
@@ -100,7 +109,7 @@ monogatari.characters ({
 	'p': {
 		name: '{{player.name}}',
 		color: '#07f6cc',
-	}
+	},
 });
 
 monogatari.script ({
@@ -140,17 +149,23 @@ monogatari.script ({
 		'centered *ALARM RINGING!!*',
 		'show background bedroom with headShake',
 		'stop sound alarm',
+		'play music mainBG with volume 50 loop',
 		'p oh CRAP! I’m late for school!!',
+		'play sound st with volume 100',
 		'enter short prep scene',
 		'show background street with wobble',
 		'p Later, Mom!',
 		'p: ahhhhhhhhhhhh',
-		'play sound snake',
+		'play sound snake with volume 100',
 		'enter snake bite scene',
 		'show background street with fadeOut 5s',
 		'p: shit...',
+		'stop music mainBG fade 2',
 		'show scene #000000 with flash',
 		'centered 3 days later...',
+		'show background fantasy with fadeIn',
+		'show character y default with fadeIn',
+		'y:happy hello, hooman!',
 		'p: Where am I?..',
 		'p: Who are you?..',
 		'p: WAAAHH!..',

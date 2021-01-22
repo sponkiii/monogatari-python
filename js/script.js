@@ -54,6 +54,8 @@ monogatari.assets ('voices', {
 
 // Define the sounds used in the game.
 monogatari.assets ('sounds', {
+	'alarm': 'alarm.mp3',
+	'snake': 'snake.mp3',
 
 });
 
@@ -115,6 +117,23 @@ monogatari.characters ({
 	'p': {
 		name: '{{player.name}}',
 		color: '#07f6cc',
+		directory: 'main-girl',
+		sprites:{
+			happy: 'main-girl-happy.jpg',
+			sad: 'main-girl-sad.jpg',
+			angry: 'main-girl-angry.jpg',
+			default: 'main-girl-default.jpg',
+			shocked: 'main-girl-shocked.jpg',
+			dissapointed: 'main-girl-dissapointed.jpg',
+		},
+		expressions:{
+			happy: 'expressions/main-girl-happy.jpg',
+			sad: 'expressions/main-girl-sad.jpg',
+			angry: 'expressions/main-girl-angry.jpg',
+			shocked: 'expressions/main-girl-shocked.jpg',
+			dissapointed: 'expressions/main-girl-dissapointed.jpg',
+		},
+
 	}
 });
 
@@ -151,13 +170,16 @@ monogatari.script ({
 				'Warning': 'You must enter a name!'
 			}
 		},
+		'play sound alarm',
 		'centered *ALARM RINGING!!*',
 		'show background bedroom with headShake',
+		'stop sound alarm',
 		'p oh CRAP! I’m late for school!!',
 		'enter short prep scene',
 		'show background street with wobble',
 		'p Later, Mom!',
 		'p: ahhhhhhhhhhhh',
+		'play sound snake',
 		'enter snake bite scene',
 		'show background street with fadeOut 5s',
 		'p: shit...',
@@ -200,80 +222,69 @@ monogatari.script ({
 						},
 				},	
 		],
-		'afterChoice': [
-			'*violent creatures appears*',
-			'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
-			'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
-			'p SOUNDS AWESOME!',
-			'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
+						'afterChoice': [
+							'*violent creatures appears*',
+							'y:worried oh no! {{player.name}}, make them disappear!',
+							'y:worried to do that, you have to input the right answers',
 
-
-			{
-				'Choice': {
-						'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
-					'Complex': {
-						'Text': 'Complex',
-						'Do': 'jump Complex'
-						},
-					'Float': {
-						'Text': 'Float',
-						'Do': 'jump Float'
-						},
-					'Int': {
-						'Text': 'Int',
-						'Do': 'jump Int'
-					}
-					},
-			},	
+							'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
+							'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
+							'p:happy SOUNDS AWESOME!',
+							'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
+							'jump QuestionAgain',
 
 		],
 		'QuestionAgain':[
 			'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
 
+							{
+								'Choice': {
+										'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
+									'Complex': {
+										'Text': 'Complex',
+										'Do': 'jump Complex'
+										},
+									'Float': {
+										'Text': 'Float',
+										'Do': 'jump Float'
+										},
+									'Int': {
+										'Text': 'Int',
+										'Do': 'jump Int'
+									}
+									},
+							},	
 
-			{
-				'Choice': {
-						'Dialog': 'y So, your next challenge is to choose the right numeric types of x = 2.0',
-					'Complex': {
-						'Text': 'Complex',
-						'Do': 'jump Complex'
-						},
-					'Float': {
-						'Text': 'Float',
-						'Do': 'jump Float'
-						},
-					'Int': {
-						'Text': 'Int',
-						'Do': 'jump Int'
-					}
-					},
-			},	
-
-		],
-		'Yes': [
-			'y HOOMAN! Your first challenge is python casting! You have to put the right data types on the variables!!',
-			'jump afterChoice',
-		],
+						],
+						'AfterAnswer':[
+							'y Now that you have an idea about numeric types. Let’s move on to “Strings”.',
+							'y In python, strings is surrounded by single/double quotation marks. For example: “hello” and ‘Hello’ are both correct.',
+							'p:happy Ahh! I see.',
+						],
+				'Yes': [
+					'y Because you already know what Python programming is, your first challenge is to put the right data types on the variables!',
+					'jump afterChoice',
+				],
 					
-		'No': [
-			
-			'y 	It is popular programming language',
-			'y  used for web development (server-side), software development, mathematics, system scripting. You can look here to know more: Link',
-			'jump afterChoice',
-		],
-		'Complex': [
-			'y Oh no! think again',
-			'jump QuestionAgain',
-		],
-		'Float':[
-			'y You got it right, {{player.name}}!',
-			'jump boolean-scene',
+				'No': [
+					
+					'y 	It is popular programming language',
+					'y  used for web development (server-side), software development, mathematics, system scripting. You can look here to know more: Link',
+					'jump afterChoice',
+				],
+				'Complex': [
+					'y:sad Oh no! think again',
+					'jump QuestionAgain',
+				],
+				'Float':[
+					'y:happy You got it right, {{player.name}}!',
+					'jump boolean-scene',
 
-		],
-		'Int': [
-			'y Oh no! think again',
-			'jump QuestionAgain',
-		],
+				],
+				'Int': [
+					'y:sad Oh no! think again',
+					'jump QuestionAgain',
+				],
 
 		
 		// =========arvin scene boolean=====
@@ -305,12 +316,12 @@ monogatari.script ({
 			'p WOAAAAAW!!',
 			'y:happy I KNOW RIGHT?!',
 			'y here are different types of Comparison operators',
-			'y ==	Equal, This ask the question are both value equal to each other?',
-			'y !=	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
-			'y >	Greater than, Asks the question is the first value greater than the second value?',
-			'y <	Less than	x < y, Asks the question is the first value lesser than the second value? ', 
-			'y >=	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
-			'y <=	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
+			'y "=="	Equal, This ask the question are both value equal to each other?',
+			'y "!="	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
+			'y ">"	Greater than, Asks the question is the first value greater than the second value?',
+			'y "<"	Less than	x < y, Asks the question is the first value lesser than the second value? ', 
+			'y ">="	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
+			'y "<="	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
 			'p:sad I hope that\'s everything I need to know... ',
 			'y:happy Don\'t be silly we have three more things you need to know',
 			'p:shocked WAAAAH!!!... ',
@@ -321,7 +332,7 @@ monogatari.script ({
 			'p Python Logical What Now?!',
 			'y Python Logical Operators',
 			'y These logical operators are used to combine conditional statements',
-			'y such as: x < 5 and  x < 10, x < 5 or x < 4, not(x < 5 and x < 10)',
+			'y such as: (x < 5 and  x < 10)\, (x < 5 or x < 4)\, not(x < 5 and x < 10)',
 			'y and 	Returns boolean value type True if both statements are true',
 			'y or	Returns boolean value type True if one of the statements is true',
 			'y not	Reverse the result, returns False if the result is true',

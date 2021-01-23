@@ -189,7 +189,7 @@ monogatari.script ({
 		'show background bedroom with headShake',
 		'stop sound alarm',
 		'play music mainBG with fadeIn 2s volume 70 loop',
-		'p oh CRAP! I’m late for school!!',
+		'p:shocked oh CRAP! I’m late for school!!',
 		'play sound st with volume 100',
 		'enter short prep scene',
 		'show background street with wobble',
@@ -211,10 +211,10 @@ monogatari.script ({
 		'p:shocked Who are you?..',
 		'p:shocked WAAAHH!..',
 		'y: Let\'s start again. Hello {{player.name}} Welcome to Monogatari!',
-		'y:happy hello, hooman! I saw you lying on the street.',
+		'y:happy I saw you lying on the street.',
 		'p:shocked What happened?!',
 		'p:shocked How did I get here?!',
-		'y:happy You must have been his 5th victim for this month, hooman.',
+		'y:happy You must have been the serpent\'s 5th victim for this month, hooman.',
 		'p:angry Where am I?!',
 		'y:happy You are now at the python world',
 		'y:happy For you to get back to your real world, you have to take up the challenges about the PYTHON PROGRAMMING LANGUAGE to defeat the bad snake',
@@ -389,6 +389,8 @@ monogatari.script ({
 		],
 		'b1-True': [
 			'y:dissapointed ohhhhhh.... you dummy.',
+			'p:shocked NO WAY I\'m WRONG?!',
+			'y:dissapointed Yep, you didn\'t get it right',
 			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
 			'y Remember.. booleans will only return True if the comparison of two values are equal',
 			'hide character s with fadeOut',
@@ -397,18 +399,18 @@ monogatari.script ({
 		],
 			
 		'b1-False': [
-			
 			'y:happy GREAT WORK!',
+			'p:happy YES!!',
 			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
 			'hide character s with fadeOut',
 			'y Let\'s go to the next one',
 			'jump second-b-Question',
 		],
-		'second-b-Question':[
-			'show character s b2q at right with fadeIn', 
+		'second-b-Question':[ 
 			'y:happy Here we are on the next boolean challenge',
 			'p:sad Ohh boy... here we go again',
-			'y: You can do it. Good luck!',
+			'y:happy You can do it. Good luck!',
+			'show character s b2q at right with fadeIn',
 			{
 				'Choice': {
 						'Dialog': 'y what value will it return with the expression (x==10.0)?',
@@ -425,6 +427,7 @@ monogatari.script ({
 		],
 		'b2-True': [
 			'y:happy GOOD JOB!',
+			'p:happy YAHOOO!!, I don\'t do mistakes',
 			'y You\'re getting better at this',
 			'y The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
 			'hide character s with fadeOut',
@@ -434,6 +437,9 @@ monogatari.script ({
 			
 		'b2-False': [
 			'y:scat GREAT SCAAAT! NOOOOOOOO!',
+			'p What did I got it wwrong?',
+			'y:sad Yep, you failed this one',
+			'p:sad Nooo way...',
 			'y:dissapointed Did you even listen to any of my teachings earlier?',
 			'y:dissapointed The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
 			'y Remember.. booleans will only return True if the comparison of two values are the same',
@@ -460,6 +466,7 @@ monogatari.script ({
 		],
 		'b3-True': [
 			'y:scat NOOOOOOOO!',
+			'p:shocked UGGGHHH!! It\'s too haard',
 			'y:dissapointed we\'ll I gatta admit this one was pretty tough',
 			'y:dissapointed The expression (x>y) returns False since 5 is actually less than 10',
 			'y:dissapointed Then the expression <p>(y<5)</p> returns false since 10 is greater than 5',
@@ -473,6 +480,7 @@ monogatari.script ({
 			
 		'b3-False': [
 			'y:happy AMAZING!',
+			'p That\'s right, call me Agent. Smooth',
 			'y You\'re really really good at this',
 			'y The expression (x>y) returns False since 5 is actually less than 10',
 			'y Then the expression <p>(y<5)</p> returns false since 10 is greater than 5',
@@ -484,7 +492,68 @@ monogatari.script ({
 			'jump fourth-b-Question',
 		],
 		'fourth-b-Question':[
+			'y This is it {{player.name}}, this final question will determin whether you go back into your world or get stuck here in our world',
+			'y Before we proceed... I want you to know that',
+			'y:happy I really had a great time assisting you in our world. So, Good luck!',
+			'p Hey, I enjoyed our company together in this world as well.',
+			'show character s b4q at right with fadeIn',
+			{
+				'Choice': {
+						'Dialog': 'y what boolean value type will the problem shown above return?',
+					'True': {
+						'Text': 'True',
+						'Do': 'jump b4-True'
+						},
+					'False': {
+						'Text': 'False',
+						'Do': 'jump b4-False'
+						},
+					},
+			},
 
+		],
+		'b4-True':[
+			'y:scat GREAT SCAT!!!',
+			'p:shocked UGGGHHH!! WHAT\'S HAPPENING?!',
+			'y:scat SEEMS LIKE YOUR MISTAKE IS BRINGING US BACK TO THE PREVIOUS QUESTIONS!',
+			'p:shocked THA\'S NOT GOOOD!!',
+			'y:scat The expression (x==y) returns False, because int 3 is not equal to str \'3\'',
+			'y:scat Then the expression (x>2) returns True, because 3 is greater than 2',
+			'y:scat Thus with the "or" operator on the conditions, the boolean type that will be returning is True since one of the statements is true',
+			'y:scat BUT!, with the "not" condition, the returned value will be False. Since the value from "or" was True',
+			'y:scat Remember.. "or" operator returns boolean value type True if one of the statements is true',
+			'y:scat and the "not" operator reverses the returned result, returns False if the result is True',
+			'hide character s with fadeOut',
+			'y Don\'t worry...',
+			'y:happy We\'ll get it next time',
+			'jump second-b-Question',
+		],
+		'b4-False':[
+			'y:happy YOU DID IT!!!',
+			'p:happy I DID IT!!',
+			'y:happy You\'re amazing!',
+			'p:happy I can finally go back home to my real world!',
+			'y:happy YES!, CONGRATULATIONS!',
+			'y The expression (x==y) returns False, because int 3 is not equal to str \'3\'',
+			'y Then the expression (x>2) returns True, because 3 is greater than 2',
+			'y Thus with the "or" operator on the conditions, the boolean type that will be returning is True since one of the statements is true',
+			'y BUT!, with the "not" condition, the returned value will be False. Since the value from "or" was True',
+			'y:happy Remember.. "or" operator returns boolean value type True if one of the statements is true',
+			'y:happy and the "not" operator reverses the returned result, returns False if the result is True',
+			'y:happy CONGRATULATIONS YOU COMPLETED THE CHALLENGES!',
+			'hide character s with fadeOut',
+			'p:happy Thank\'s Catto-san',
+			'p:sad I woudn\'t have made it if it wasn\'t for you',
+			'y:happy You\'re welcome. I\'m proud of you and good luck on your career on your real world',
+			'y:happy Till we meet again!',
+			'jump endo',
+		],
+		'endo':[
+			'show background street with fadeIn',
+			'{{player.name}} got back',
+			'and became the best python developer in the world',
+			'YOU WIN ENDING',
+			'THANKS FOR PLAYING',
 			'end'
 		],
 

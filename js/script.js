@@ -51,7 +51,7 @@ monogatari.assets ('gallery', {
 monogatari.assets ('music', {
 	'mainBG': 'bgmusic1.mp3',
 	'mainBG2': 'bgmusic2.mp3',
-
+	'mainBG3': 'bgmusic3.mp3',
 });
 
 // Define the voice files used in the game.
@@ -188,8 +188,8 @@ monogatari.script ({
 		'centered *ALARM RINGING!!*',
 		'show background bedroom with headShake',
 		'stop sound alarm',
-		'play music mainBG with volume 50 loop',
-		'p:shocked oh CRAP! I’m late for school!!',
+		'play music mainBG with fadeIn 2s volume 70 loop',
+		'p oh CRAP! I’m late for school!!',
 		'play sound st with volume 100',
 		'enter short prep scene',
 		'show background street with wobble',
@@ -200,8 +200,10 @@ monogatari.script ({
 		'show background street with fadeOut 5s',
 		'p:shocked shit...',
 		'stop music mainBG fade 2',
+		'stop sound st',
 		'show scene #000000 with flash',
 		'centered 3 days later...',
+		'play music mainBG3 with volume 80 loop',
 		'show background fantasy with fadeIn',
 		'show character y default with fadeIn',
 		'y:happy hello, hooman!',

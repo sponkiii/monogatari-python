@@ -9,7 +9,12 @@ monogatari.action ('message').messages ({
 			<p><a href='https://developers.monogatari.io/documentation/'>Documentation</a> - Everything you need to know.</p>
 			<p><a href='https://monogatari.io/demo/'>Demo</a> - A simple Demo.</p>
 		`
-	}
+	},
+	'b1-question-msg': {
+        title: 'b1-question-msg',
+        subtitle: 'b1-question-msg',
+		body: '<p>10 == "are you sure about it?"</p>'
+    },
 });
 
 // Define the notifications used in the game
@@ -110,11 +115,12 @@ monogatari.characters ({
 		color: '#ffa500',
 		directory: 'minion', 
         sprites: {
-            angry: 'normal.png',
-            happy: 'minion-happy.png',
-            normal: 'normal.png',
-            sad: 'sad.png',
-            surprised: 'surprised.png',
+            snake: 'expressions/snake.png',
+            happy: 'expressions/minion-happy.png',
+            b1q: 'expressions/b1-question.png',
+            b2q: 'expressions/b2-question.png',
+            b3q: 'expressions/b3-question.png',
+            b4q: 'expressions/b4-question.png',
         },
         expressions: {
             happy: 'expressions/minion-happy.png',
@@ -217,9 +223,9 @@ monogatari.script ({
 		'p:sad but why me?',
 		'y I\'m pretty sure it\'s for no good reason',
 		'y You just happen to cross paths',
-		'y:happy But hey look on the good side... You\'ll be learn some new things about python',
+		'y:happy But hey look on the good side... You\'ll be learning some new things about python',
 		'p Well if you put it that way...',
-		'p:happy It\'ll give me more skills for my resume!',
+		'p:happy It\'ll give me more skills for my studies too!',
 		'show background fantasy with fadeOut 5s',
 		'show character y default with fadeOut 5s',
 		// =======Ricah part input=====
@@ -319,7 +325,7 @@ monogatari.script ({
 			'y Booleans only represent one of two values which are: TRUE or FALSE.',
 			'p:shocked NANI?! It only gives us True or False?',
 			'y Yes',
-			'p Seems kinda useless don\'t you think?..',
+			'p:angry Seems kinda useless don\'t you think?..',
 			'y In programming you often need to know if an expression is True or False.',
 			'y That\'s why this one plays a big part for your coding.',
 			'y now before we move on to your next challenge I\'ll have to let you know about Python Comparison Operators',
@@ -339,9 +345,9 @@ monogatari.script ({
 			'y "=="	Equal, This ask the question are both value equal to each other?',
 			'y "!="	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
 			'y ">"	Greater than, Asks the question is the first value greater than the second value?',
-			'y "\<"	Less than	x < y, Asks the question is the first value lesser than the second value? ', 
+			'y and <p>"<"	Less than	x < y, Asks the question is the first value lesser than the second value?</p> ', 
 			'y ">="	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
-			'y "\<="	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
+			'y here <p>"<="	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?</p>',  
 			'p:sad I hope that\'s everything I need to know... ',
 			'y:happy Don\'t be silly we have three more things you need to know',
 			'p:shocked WAAAAH!!!... ',
@@ -349,23 +355,25 @@ monogatari.script ({
 			'y I know you can do this. I believe in you',
 			'y Let\'s get back to buisness',
 			'y The Last three things you need to know is about Python Logical Operators',
-			'p Python Logical What Now?!',
+			'p:shocked Python Logical What Now?!',
 			'y Python Logical Operators',
 			'y These logical operators are used to combine conditional statements',
-			'y such as (x \< 5 and  x \< 10)',
-			'y (x \< 5 or x \< 4)',
-			'y including not(x \< 5 and x \< 10)',
-			'y and 	Returns boolean value type True if both statements are true',
-			'y or	Returns boolean value type True if one of the statements is true',
-			'y not	Reverse the result, returns False if the result is true',
+			'y such as <p>(x \< 5 and  x \< 10), (x \< 5 or x \< 4) also (not(x \< 5 and x \< 10))</p>',
+			'y "and" operator returns boolean value type True if both statements are true',
+			'y "or" operator returns boolean value type True if one of the statements is true',
+			'y "not" operator reverses the result, returns False if the result is true',
 			'p I get it now',
 			'p Let\'s begin on to the next challenge then.',
 			'y:happy Alright! Now let\'s see if you can tell what value will the boolean will be returning with the expressions',
-			'insert first equation photo',
+			'show character y default with fadeOut 5s',
+			'y Good luck {{player.name}}!',
+			'show character y default at left with fadeIn',
+			'show character s b1q at right with fadeIn',
+			
 
 			{
 				'Choice': {
-						'Dialog': 'y tell me what value will it return with the expression (10 == "are you sure about it?")',
+						'Dialog': 'y Tell me what value will it return with the expression (10 == "are you sure about it?")',
 					'True': {
 						'Text': 'True',
 						'Do': 'jump b1-True'
@@ -380,8 +388,9 @@ monogatari.script ({
 		'b1-True': [
 			'y:dissapointed ohhhhhh.... you dummy.',
 			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
-			'y Remember.. booleans will only return True if the comparison of two values are the same',
-			'y Let\'s try that one more time',
+			'y Remember.. booleans will only return True if the comparison of two values are equal',
+			'hide character s with fadeOut',
+			'y It\'s allright we\'ll get the next one this time',
 			'jump second-b-Question',
 		],
 			
@@ -389,17 +398,18 @@ monogatari.script ({
 			
 			'y:happy GREAT WORK!',
 			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
-			'y It\'s allright let\'s go to the next one',
+			'hide character s with fadeOut',
+			'y Let\'s go to the next one',
 			'jump second-b-Question',
 		],
 		'second-b-Question':[
-			'set bg with new question',
-			'y:happy Here we go!',
+			'show character s b2q at right with fadeIn', 
+			'y:happy Here we are on the next boolean challenge',
 			'p:sad Ohh boy... here we go again',
-			'y: HAHAHA! Silly you can do it. Good luck!',
+			'y: You can do it. Good luck!',
 			{
 				'Choice': {
-						'Dialog': 'y what value will it return with the expression (10==10.0)?',
+						'Dialog': 'y what value will it return with the expression (x==10.0)?',
 					'True': {
 						'Text': 'True',
 						'Do': 'jump b2-True'
@@ -415,21 +425,65 @@ monogatari.script ({
 			'y:happy GOOD JOB!',
 			'y You\'re getting better at this',
 			'y The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
+			'hide character s with fadeOut',
 			'y:happy LET\'s GO TO THE NEXT ONE TO BRING YOU BACK TO YOUR WORLD!',
 			'jump third-b-Question',
 		],
 			
 		'b2-False': [
-			'y:scat GREAT SCAAAT!',
+			'y:scat GREAT SCAAAT! NOOOOOOOO!',
 			'y:dissapointed Did you even listen to any of my teachings earlier?',
 			'y:dissapointed The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
 			'y Remember.. booleans will only return True if the comparison of two values are the same',
+			'hide character s with fadeOut',
 			'y:happy LET\'s KEEP GOING TO GET YOU BACK TO YOUR OWN WORLD!',
 			'y Don\'t give up',
 			'jump third-b-Question',
 		],
 		'third-b-Question':[
+			'show character s b3q at right with fadeIn', 
+			{
+				'Choice': {
+						'Dialog': 'y what boolean value will the problem shown above return?',
+					'True': {
+						'Text': 'True',
+						'Do': 'jump b3-True'
+						},
+					'False': {
+						'Text': 'False',
+						'Do': 'jump b3-False'
+						},
+					},
+			},
+		],
+		'b3-True': [
+			'y:scat NOOOOOOOO!',
+			'y:dissapointed we\'ll I gatta admit this one was pretty tough',
+			'y:dissapointed The expression (x>y) returns False since 5 is actually less than 10',
+			'y:dissapointed Then the expression <p>(y<5)</p> returns false since 10 is greater than 5',
+			'y:dissapointed Thus with the "and" operator on the conditions, the boolean type that will be returning is False since both are not True ',
+			'y Remember.. "and" operator only returns boolean value type True if both statements are true',
+			'hide character s with fadeOut',
+			'y Don\'t worry...',
+			'y:happy Let\'s go to the FINAL challenge and finish this shall we?',
+			'jump fourth-b-Question',
+		],
+			
+		'b3-False': [
+			'y:happy AMAZING!',
+			'y You\'re really really good at this',
+			'y The expression (x>y) returns False since 5 is actually less than 10',
+			'y Then the expression <p>(y<5)</p> returns false since 10 is greater than 5',
+			'y Thus with the "and" operator on the conditions, the boolean type that will be returning is False since both are not True ',
+			'y:happy Remember.. "and" operator only returns boolean value type True if both statements are true',
+			'y We\'re almost there. One more to go',
+			'hide character s with fadeOut',
+			'y:happy Let\'s go to the FINAL challenge and finish this shall we?',
+			'jump fourth-b-Question',
+		],
+		'fourth-b-Question':[
 
+			'end'
 		],
 
 });

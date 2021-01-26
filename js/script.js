@@ -94,21 +94,23 @@ monogatari.characters ({
 		color: '#5bcaff',
 		directory: 'catto',
 		sprites:{
-			happy: 'catto-happy.png',
+			happy: 'catto-happy.jpg',
 			sad: 'catto-sad.png',
 			default: 'expressions/catto.png',
 			angry: 'catto-angry.png',
 			shocked: 'catto-shocked.png',
-			dissapointed: 'catto-dissapointed.png',
+			dissapointed: 'catto-dissapointed.jpg',
 		},
 		expressions:{
-			happy: 'expressions/catto-happy.png',
+			happy: 'expressions/catto-happy.jpg',
 			sad: 'expressions/catto-sad.png',
+			default: 'expressions/catto.jpg',
 			angry: 'expressions/catto-angry.png',
 			shocked: 'expressions/catto-shocked.png',
-			dissapointed: 'expressions/catto-dissapointed.png',
+			dissapointed: 'expressions/catto-dissapointed.jpg',
 			scat: 'expressions/scat.jpeg',
 		},
+		default_expression: 'default',
 
 	},
 	's': {
@@ -213,14 +215,14 @@ monogatari.script ({
 		'p:shocked Where am I?..',
 		'p:shocked Who are you?..',
 		'p:shocked WAAAHH!..',
-		'y: Let\'s start again. Hello {{player.name}} Welcome to Monogatari!',
+		'y:dissapointed Let\'s start again. Hello {{player.name}} Welcome to Monogatari!',
 		'y:happy I saw you lying on the street.',
 		'p:shocked What happened?!',
 		'p:shocked How did I get here?!',
 		'y:happy You must have been the serpent\'s 5th victim for this month, hooman.',
 		'p:angry Where am I?!',
 		'y:happy You are now at the python world',
-		'y:happy For you to get back to your real world, you have to take up the challenges about the PYTHON PROGRAMMING LANGUAGE to defeat the bad snake',
+		'y:happy For you to get back to your real world, you have to take up the challenges about the <span style="color:aqua">PYTHON PROGRAMMING LANGUAGE</span> to defeat the bad snake',
 		'p:shocked What happens if I didn\'t do any of those?',
 		'y:happy …then you will be stuck here. FOREVER.',
 		'p:shocked NANIII!!??', 
@@ -246,24 +248,65 @@ monogatari.script ({
 							'Text': 'Yes',
 							'Do': 'jump Yes'
 							},
-							'No': {
-								'Text': 'No',
-								'Do': 'jump No'
+						'No': {
+							'Text': 'No',
+							'Do': 'jump No'
 							},
 						},
 				},	
 		],
-						'afterChoice': [
-							'*violent creatures appears*',
-							'y:worried oh no! {{player.name}}, make them disappear!',
-							'y:worried to do that, you have to use the variable on their body and assign them with their right data types',
+		'afterChoice': [
+			'*violent creatures appears*',
+			'y:worried oh no! {{player.name}}, seems like we have encountered a violent creature!',
+			'y:worried These lovely ceratures gets violent reactions when people mess with their variable types.',
+			'y:worried We need to help them free from their variable types confusion',
+			'y:worried to do that, you have to use the variables on their body and assign them with their right data types seen above their head',
+			
+			'jump first-c-challenge',
+		],
+		'first-c-challenge':[
+			'sample: var_name = data_type(data_value)',
+			'Enter ans here: <input type="text">',
 
-							'y What you did is called Python Casting! Where you will specify the variable type. See more here: link',
-							'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
-							'p:happy SOUNDS AWESOME!',
-							'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
-							'jump QuestionAgain',
+			'jump second-c-challenge',
+		],
+		'second-c-challenge':[
+			{
+				'Input': {
+					'Text': 'Enter your name:',
+					'Validation': function (input) {
+						return input.trim ().length > 0;
+					},
+					'Save': function (input) {
+						this.storage ({
+							player: {
+								ans: input
+							}
+						});
+						return true;
+					},
+					'Revert': function () {
+						this.storage ({
+							player: {
+								ans: ''
+							}
+						});
+					},
+					'Warning': 'You must enter a name!'
+				}
+			},
 
+			'jump end-of-Casting-challenge',
+		],
+		'end-of-Casting-challenge':[
+			'y:happy GREAT JOB! {{player.name}}',
+			'y:happy You help free those creatures from their variable types confusions',
+			'y What you did is called Python Casting! Where you will specify the variable type. See more here: <a href="https://www.w3schools.com/python/python_casting.asp" target="_blank" style="color: aqua;">https://www.w3schools.com/python/python_casting.asp</a>',
+			'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
+			'p:happy SOUNDS AWESOME!',
+			'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
+			
+			'jump QuestionAgain',
 		],
 		'QuestionAgain':[
 			'y And for your next challenge, it’s about the numeric data types. There are three(3) numeric types: INT, FLOAT, and COMPLEX.',
@@ -300,7 +343,7 @@ monogatari.script ({
 				'No': [
 					
 					'y 	It is popular programming language',
-					'y  used for web development (server-side), software development, mathematics, system scripting. You can look here to know more: Link',
+					'y  used for web development (server-side), software development, mathematics, system scripting. You can look here to know more: <a href="https://www.w3schools.com/python/default.asp" target="_blank" style="color: aqua;">https://www.w3schools.com/python/default.asp</a>',
 					'jump afterChoice',
 				],
 				'Complex': [
@@ -347,12 +390,12 @@ monogatari.script ({
 			'p WOAAAAAW!!',
 			'y:happy I KNOW RIGHT?!',
 			'y here are different types of Comparison operators',
-			'y "=="	Equal, This ask the question are both value equal to each other?',
-			'y "!="	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
-			'y ">"	Greater than, Asks the question is the first value greater than the second value?',
-			'y and <p>"<"	Less than	x < y, Asks the question is the first value lesser than the second value?</p> ', 
-			'y ">="	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
-			'y here <p>"<="	Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?</p>',  
+			'y <span style="color:aqua">"=="</span> Equal, This ask the question are both value equal to each other?',
+			'y <span style="color:aqua">"!="</span>	Not equal, This on the other hand asks the question are both value <strong>NOT</strong> equal to each other? ',
+			'y <span style="color:aqua">">"</span> Greater than, Asks the question is the first value greater than the second value?',
+			'y <span style="color:aqua">"<"</span> Less than, Asks the question is the first value lesser than the second value?', 
+			'y <span style="color:aqua">">="</span>	Greater than or equal to, Asks the question is the first value greater thanor equal to the second value? ',  
+			'y <span style="color:aqua">"<="</span> Less than or equal to, And this one asks the question is the first value lesser than or equal to the second value?',  
 			'p:sad I hope that\'s everything I need to know... ',
 			'y:happy Don\'t be silly we have three more things you need to know',
 			'p:shocked WAAAAH!!!... ',
@@ -363,10 +406,11 @@ monogatari.script ({
 			'p:shocked Python Logical What Now?!',
 			'y Python Logical Operators',
 			'y These logical operators are used to combine conditional statements',
-			'y such as <p>(x \< 5 and  x \< 10), (x \< 5 or x \< 4) also (not(x \< 5 and x \< 10))</p>',
-			'y "and" operator returns boolean value type True if both statements are true',
-			'y "or" operator returns boolean value type True if one of the statements is true',
-			'y "not" operator reverses the result, returns False if the result is true',
+			'y such as <span style="color:aqua">(x \< 5 and  x \< 10)</span>, <span style="color:aqua">(x \< 5 or x \< 4)</span> also <span style="color:aqua">(not(x \< 5 and x \< 10))<span>',
+			'y <span style="color:aqua">"and"</span> operator returns boolean value type True if both statements are true',
+			'y <span style="color:aqua">"or"</span> operator returns boolean value type True if one of the statements is true',
+			'y <span style="color:aqua">"not"</span> operator reverses the result, returns False if the result is true',
+			'y:happy Here is a link that you could use as a reference scroll down for comparison and logical operators: <a href="https://www.w3schools.com/python/python_operators.asp" target="_blank" style="color: aqua;">https://www.w3schools.com/python/python_operators.asp</a>',
 			'p I get it now',
 			'p Let\'s begin on to the next challenge then.',
 			'y:happy Alright! Now let\'s see if you can tell what value will the boolean will be returning with the expressions',
@@ -394,8 +438,8 @@ monogatari.script ({
 			'y:dissapointed ohhhhhh.... you dummy.',
 			'p:shocked NO WAY I\'m WRONG?!',
 			'y:dissapointed Yep, you didn\'t get it right',
-			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
-			'y Remember.. booleans will only return True if the comparison of two values are equal',
+			'y The boolean will return False because <span style="color:aqua">Int 10</span> is not equal to <span style="color:aqua">str "are you sure about it?"</span>',
+			'y Remember.. booleans will only return <span style="color:aqua">True</span> if the comparison of two values are <span style="color:aqua">equal</span>',
 			'hide character s with fadeOut',
 			'y It\'s allright we\'ll get the next one this time',
 			'jump second-b-Question',
@@ -404,7 +448,7 @@ monogatari.script ({
 		'b1-False': [
 			'y:happy GREAT WORK!',
 			'p:happy YES!!',
-			'y The boolean will return False because Int 10 is not equal to str "are you sure about it?"',
+			'y The boolean will return False because <span style="color:aqua">Int 10</span> is not equal to <span style="color:aqua">str "are you sure about it?"</span>',
 			'hide character s with fadeOut',
 			'y Let\'s go to the next one',
 			'jump second-b-Question',
@@ -416,7 +460,7 @@ monogatari.script ({
 			'show character s b2q at right with fadeIn',
 			{
 				'Choice': {
-						'Dialog': 'y what value will it return with the expression (x==10.0)?',
+						'Dialog': 'y what value will it return with the expression <span style="color:aqua">(x==10.0)</span>?',
 					'True': {
 						'Text': 'True',
 						'Do': 'jump b2-True'
@@ -432,7 +476,7 @@ monogatari.script ({
 			'y:happy GOOD JOB!',
 			'p:happy YAHOOO!!, I don\'t do mistakes',
 			'y You\'re getting better at this',
-			'y The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
+			'y The boolean will return True because <span style="color:aqua">Int 10</span> and <span style="color:aqua">float 10.0</span> are just as equal value that satisfies the condition',
 			'hide character s with fadeOut',
 			'y:happy LET\'s GO TO THE NEXT ONE TO BRING YOU BACK TO YOUR WORLD!',
 			'jump third-b-Question',
@@ -440,12 +484,12 @@ monogatari.script ({
 			
 		'b2-False': [
 			'y:scat GREAT SCAAAT! NOOOOOOOO!',
-			'p What did I got it wwrong?',
+			'p What did I got it wrong again?',
 			'y:sad Yep, you failed this one',
 			'p:sad Nooo way...',
 			'y:dissapointed Did you even listen to any of my teachings earlier?',
-			'y:dissapointed The boolean will return True because Int 10 and float 10.0 are just as equal value that satisfys the condition',
-			'y Remember.. booleans will only return True if the comparison of two values are the same',
+			'y:dissapointed The boolean will return True because <span style="color:aqua">Int 10</span> and <span style="color:aqua">float 10.0</span> are just as equal value that satisfys the condition',
+			'y Remember.. booleans will only return <span style="color:aqua">True</span> if the comparison of two values are <span style="color:aqua">equal</span>',
 			'hide character s with fadeOut',
 			'y:happy LET\'s KEEP GOING TO GET YOU BACK TO YOUR OWN WORLD!',
 			'y Don\'t give up',
@@ -471,10 +515,10 @@ monogatari.script ({
 			'y:scat NOOOOOOOO!',
 			'p:shocked UGGGHHH!! It\'s too haard',
 			'y:dissapointed we\'ll I gatta admit this one was pretty tough',
-			'y:dissapointed The expression (x>y) returns False since 5 is actually less than 10',
-			'y:dissapointed Then the expression <p>(y<5)</p> returns false since 10 is greater than 5',
-			'y:dissapointed Thus with the "and" operator on the conditions, the boolean type that will be returning is False since both are not True ',
-			'y Remember.. "and" operator only returns boolean value type True if both statements are true',
+			'y:dissapointed The expression <span style="color:aqua">(x>y)</span> returns False since <span style="color:aqua">5</span> is actually less than <span style="color:aqua">10</span>',
+			'y:dissapointed Then the expression <span style="color:aqua">(y<5)</span> returns <span style="color:aqua">false</span> since <span style="color:aqua">10</span> is greater than <span style="color:aqua">5</span>',
+			'y:dissapointed Thus with the <span style="color:aqua">"and"</span> operator on the conditions, the boolean type that will be returning is <span style="color:aqua">False</span> since both expressions are not True',
+			'y Remember.. <span style="color:aqua">"and"</span> operator only returns boolean value type <span style="color:aqua">True</span> if both statements are true',
 			'hide character s with fadeOut',
 			'y Don\'t worry...',
 			'y:happy Let\'s go to the FINAL challenge and finish this shall we?',
@@ -485,10 +529,10 @@ monogatari.script ({
 			'y:happy AMAZING!',
 			'p That\'s right, call me Agent. Smooth',
 			'y You\'re really really good at this',
-			'y The expression (x>y) returns False since 5 is actually less than 10',
-			'y Then the expression <p>(y<5)</p> returns false since 10 is greater than 5',
-			'y Thus with the "and" operator on the conditions, the boolean type that will be returning is False since both are not True ',
-			'y:happy Remember.. "and" operator only returns boolean value type True if both statements are true',
+			'y The expression <span style="color:aqua">(x>y)</span> returns False since <span style="color:aqua">5</span> is actually less than <span style="color:aqua">10</span>',
+			'y Then the expression <span style="color:aqua">(y<5)</span> returns <span style="color:aqua">false</span> since <span style="color:aqua">10</span> is greater than <span style="color:aqua">5</span>',
+			'y Thus with the <span style="color:aqua">"and"</span> operator on the conditions, the boolean type that will be returning is <span style="color:aqua">False</span> since both expressions are not True',
+			'y:happy Remember.. <span style="color:aqua">"and"</span> operator only returns boolean value type <span style="color:aqua">True</span> if both statements are true',
 			'y We\'re almost there. One more to go',
 			'hide character s with fadeOut',
 			'y:happy Let\'s go to the FINAL challenge and finish this shall we?',
@@ -520,12 +564,12 @@ monogatari.script ({
 			'p:shocked UGGGHHH!! WHAT\'S HAPPENING?!',
 			'y:scat SEEMS LIKE YOUR MISTAKE IS BRINGING US BACK TO THE PREVIOUS QUESTIONS!',
 			'p:shocked THA\'S NOT GOOOD!!',
-			'y:scat The expression (x==y) returns False, because int 3 is not equal to str \'3\'',
-			'y:scat Then the expression (x>2) returns True, because 3 is greater than 2',
-			'y:scat Thus with the "or" operator on the conditions, the boolean type that will be returning is True since one of the statements is true',
-			'y:scat BUT!, with the "not" condition, the returned value will be False. Since the value from "or" was True',
-			'y:scat Remember.. "or" operator returns boolean value type True if one of the statements is true',
-			'y:scat and the "not" operator reverses the returned result, returns False if the result is True',
+			'y:scat The expression <span style="color:aqua">(x==y)</span> returns False, because <span style="color:aqua">int 3</span> is not equal to <span style="color:aqua">str \'3\'</span>',
+			'y:scat Then the expression <span style="color:aqua">(x>2)</span> returns <span style="color:aqua">True</span>, because <span style="color:aqua">3</span> is greater than <span style="color:aqua">2</span>',
+			'y:scat Thus with the <span style="color:aqua">"or"</span> operator on the conditions, the boolean type that will be returning is <span style="color:aqua">True</span> since one of the statements is true',
+			'y:scat BUT!, with the <span style="color:aqua">"not"</span> condition on it, the returned value will be <span style="color:aqua">False</span>. Since the value from <span style="color:aqua">"or"</span> was <span style="color:aqua">True</span>',
+			'y:scat Remember.. <span style="color:aqua">"or"</span> operator returns boolean value type <span style="color:aqua">True</span> if one of the statements is <span style="color:aqua">True</span>',
+			'y:scat and the <span style="color:aqua">"not"</span> operator reverses the returned results, It returns <span style="color:aqua">False</span> if the result is <span style="color:aqua">True</span>',
 			'hide character s with fadeOut',
 			'y Don\'t worry...',
 			'y:happy We\'ll get it next time',
@@ -537,12 +581,12 @@ monogatari.script ({
 			'y:happy You\'re amazing!',
 			'p:happy I can finally go back home to my real world!',
 			'y:happy YES!, CONGRATULATIONS!',
-			'y The expression (x==y) returns False, because int 3 is not equal to str \'3\'',
-			'y Then the expression (x>2) returns True, because 3 is greater than 2',
-			'y Thus with the "or" operator on the conditions, the boolean type that will be returning is True since one of the statements is true',
-			'y BUT!, with the "not" condition, the returned value will be False. Since the value from "or" was True',
-			'y:happy Remember.. "or" operator returns boolean value type True if one of the statements is true',
-			'y:happy and the "not" operator reverses the returned result, returns False if the result is True',
+			'y The expression <span style="color:aqua">(x==y)</span> returns False, because <span style="color:aqua">int 3</span> is not equal to <span style="color:aqua">str \'3\'</span>',
+			'y Then the expression <span style="color:aqua">(x>2)</span> returns <span style="color:aqua">True</span>, because <span style="color:aqua">3</span> is greater than <span style="color:aqua">2</span>',
+			'y Thus with the <span style="color:aqua">"or"</span> operator on the conditions, the boolean type that will be returning is <span style="color:aqua">True</span> since one of the statements is true',
+			'y BUT!, with the <span style="color:aqua">"not"</span> condition on it, the returned value will be <span style="color:aqua">False</span>. Since the value from <span style="color:aqua">"or"</span> was <span style="color:aqua">True</span>',
+			'y:happy Remember.. <span style="color:aqua">"or"</span> operator returns boolean value type <span style="color:aqua">True</span> if one of the statements is <span style="color:aqua">True</span>',
+			'y:happy and the <span style="color:aqua">"not"</span> operator reverses the returned results, It returns <span style="color:aqua">False</span> if the result is <span style="color:aqua">True</span>',
 			'y:happy CONGRATULATIONS YOU COMPLETED THE CHALLENGES!',
 			'hide character s with fadeOut',
 			'p:happy Thank\'s Catto-san',

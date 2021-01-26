@@ -64,6 +64,7 @@ monogatari.assets ('sounds', {
 	'alarm': 'alarm.mp3',
 	'snake': 'snake.mp3',
 	'st': 'street.mp3',
+	'bed': 'fell.mp3',
 
 });
 
@@ -188,8 +189,10 @@ monogatari.script ({
 		'centered *ALARM RINGING!!*',
 		'show background bedroom with headShake',
 		'stop sound alarm',
-		'play music mainBG with fadeIn 2s volume 70 loop',
+		'play sound bed',
+		'play music mainBG with fadeIn 2s volume 90 loop',
 		'p:shocked oh CRAP! I’m late for school!!',
+		'stop sound bed',
 		'play sound st with volume 100',
 		'enter short prep scene',
 		'show background street with wobble',
@@ -203,7 +206,7 @@ monogatari.script ({
 		'stop sound st',
 		'show scene #000000 with flash',
 		'centered 3 days later...',
-		'play music mainBG3 with volume 80 loop',
+		'play music mainBG3 with volume 100 loop',
 		'show background fantasy with fadeIn',
 		'show character y default with fadeIn',
 		'y:happy hello, hooman!',

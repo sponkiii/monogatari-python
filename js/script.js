@@ -83,6 +83,7 @@ monogatari.assets ('scenes', {
 	'bedroom': 'bedroom-scene.png',
 	'street': 'Street-scene.png',
 	'fantasy': 'pythonworld.gif',
+	'living': 'living-room.jpg',
 	
 });
 
@@ -195,8 +196,10 @@ monogatari.script ({
 		'play music mainBG with fadeIn 2s volume 90 loop',
 		'p:shocked oh CRAP! I’m late for school!!',
 		'stop sound bed',
+		'show background living',
+		'p:happy Hello! Mr. Sun, you are nice todaay',
+		'p:shocked but I am gonna be late, so I have to go',
 		'play sound st with volume 100',
-		'enter short prep scene',
 		'show background street with wobble',
 		'p:happy Later, Mom!',
 		'p:shocked ahhhhhhhhhhhh',

@@ -123,10 +123,12 @@ monogatari.characters ({
             b1q: 'expressions/b1-question.png',
             b2q: 'expressions/b2-question.png',
             b3q: 'expressions/b3-question.png',
-            b4q: 'expressions/b4-question.png',
+			b4q: 'expressions/b4-question.png',
+			snake: 'expressions/Snake-fullbody.png',
         },
         expressions: {
-            happy: 'expressions/minion-happy.png',
+			happy: 'expressions/minion-happy.png',
+			snake: 'expressions/Snake-face.png',
         },
 	},
 	'p': {
@@ -197,14 +199,32 @@ monogatari.script ({
 		'stop sound bed',
 		'play sound st with volume 100',
 		'enter short prep scene',
+		// snake start
 		'show background street with wobble',
 		'p:happy Later, Mom!',
+		'p:shoced I am soooo late!',
+		'snake appeared',
+		'show character s snake at left with fadeIn',
+		's:snake Ssssssssss....',
+		's:snake YOU!!!',
+		's:snake COME HERE KID!',
+		'p:dissapointed Damnit...',
+		'p:dissapointed Another talking snake',
+		'p:dissapointed I\'m on some kid\'s another monogatari script again',
+		'p:dissapointed I knew it...',
+		'p:angry STAY AWAY FROM MEEE!!',
+		's:snake Sssssssssssss...',
+		'p:angry SHOOO!!',
+		'p:angry SHOOO!!',
+		'p:angry I SWEAR I\'ll BITE BACK!',
+		'snake attacked and bit player',
+		'show character s snake at center',
 		'p:shocked ahhhhhhhhhhhh',
 		'play sound snake with volume 100',
-		'enter snake bite scene',
 		'show background street with fadeOut 5s',
 		'p:shocked shit...',
 		'stop music mainBG fade 2',
+		// snake end
 		'stop sound st',
 		'show scene #000000 with flash',
 		'centered 3 days later...',
@@ -236,9 +256,10 @@ monogatari.script ({
 		'show background fantasy with fadeOut 5s',
 		'show character y default with fadeOut 5s',
 		// =======Ricah part input=====
-		'y Hello, again {{player.name}}! I will be the one assisting you on your challenges.',
+		'...',
 		'show character y default with fadeIn',
 		'show background fantasy with fadeIn',
+		'y Hello, again {{player.name}}! I will be the one assisting you on your challenges.',
 		
 
 				{
@@ -256,24 +277,33 @@ monogatari.script ({
 				},	
 		],
 		'afterChoice': [
-			'*violent creatures appears*',
+			'hide character y with fadeOut',
+			'show character s happy with fadeIn',
 			'y:worried oh no! {{player.name}}, seems like we have encountered a violent creature!',
 			'y:worried These lovely ceratures gets violent reactions when people mess with their variable types.',
 			'y:worried We need to help them free from their variable types confusion',
 			'y:worried to do that, you have to use the variables on their body and assign them with their right data types seen above their head',
-			
+			// hiding everything
+			'hide character s with fadeOut',
+			'show background fantasy with fadeOut 5s',
+			'stop music mainBG3 fade 2',
+
 			'jump first-c-challenge',
 		],
 		'first-c-challenge':[
-			'sample: var_name = data_type(data_value)',
-			'Enter ans here: <input type="text">',
-
-			'jump second-c-challenge',
-		],
-		'second-c-challenge':[
+			'...', 
+			// background
+			'show background fantasy with fadeIn',
+			// monster
+			'show character s happy with fadeIn',
+			// sound
+			'play music mainBG3 with volume 100 loop',
+			'boy eto na first ',
+			'y:shocked {{player.name}}, Use the variables on their body and assign them with their right data types with values seen above their head',
 			{
 				'Input': {
-					'Text': 'Enter your name:',
+					'Class': 'questions',
+					'Text': 'sample: var_name = data_type(data_value)',
 					'Validation': function (input) {
 						return input.trim ().length > 0;
 					},
@@ -292,15 +322,137 @@ monogatari.script ({
 							}
 						});
 					},
-					'Warning': 'You must enter a name!'
+					'Warning': 'You must enter a code!'
 				}
 			},
+			{'Conditional': {
+				'Condition': function () {
+					return this.storage ('player').ans == 'x = Int(5)';
+				},
+				'True': 'jump correct-ans-for-q1',
+				'False': 'jump wrong-ans-for-q1',
+			}},
+		],
+		'wrong-ans-for-q1':[
+			'hide character s with fadeOut',
+			'show background fantasy with fadeOut 5s',
+			'stop music mainBG3 fade 2',
+			'p:shocked shit...',
+			'show scene #000000 with flash',
+			'show character y default with fadeIn',
+			'p:shocked What happened?',
+			'y:sad We failed to free the creature from their variable types confusion',
+			'y Don\'t worry we\'ll try it again',
+			'hide character y with fadeOut',
+			
+			'jump first-c-challenge',
+		],
+		'correct-ans-for-q1':[
+			// hide violent creature
+			'hide character s with fadeOut',
+			// show freed creature
+			'show character s happy with fadeIn',
+			// success
+			'y:happy We did it!',
+			'p:happy YEEEY!!',
+			// show new violent creature
+			'show character s happy with fadeIn',
+			'y:worried Oh oh, looks like we have another one',
+			'p:worried This one\'s larger than the other one!',
+			'p:happy Don\'t worry big fellow, we\'ll free you from your variable confusion too',
+			// fade everything out
+			'hide character s with fadeOut',
+			'show background fantasy with fadeOut 5s',
+			'stop music mainBG3 fade 2',
+			
+			'jump second-c-challenge',
+		],
+		'second-c-challenge':[
+			'...',
+			// background
+			'show background fantasy with fadeIn',
+			// next monster
+			'show character s happy with fadeIn',
+			// sound
+			'play music mainBG3 with volume 100 loop', 
+			'another one!',
+			'y:shocked {{player.name}}, Use the variables on their body and assign them with their right data types with values seen above their head',
 
+
+			{
+				'Input': {
+					'Class': 'questions',
+					'Text': 'sample: var_name = data_type(data_value)',
+					'Validation': function (input) {
+						return input.trim ().length > 0;
+					},
+					'Save': function (input) {
+						this.storage ({
+							player: {
+								ans: input
+							}
+						});
+						return true;
+					},
+					'Revert': function () {
+						this.storage ({
+							player: {
+								ans: ''
+							}
+						});
+					},
+					'Warning': 'You must enter a code!'
+				}
+			},
+			{'Conditional': {
+				'Condition': function () {
+					return this.storage ('player').ans == 'y = str("I am a string")';
+				},
+				'True': 'jump correct-ans-for-q2',
+				'False': 'jump wrong-ans-for-q2',
+			}},
+
+			
+		],
+		'wrong-ans-for-q2':[
+			'hide character s with fadeOut',
+			'show background fantasy with fadeOut 5s',
+			'stop music mainBG3 fade 2',
+			'p:shocked shit...',
+			'show scene #000000 with flash',
+			'show character y default with fadeIn',
+			'p:shocked What happened?',
+			'y:sad We failed to free the creature from their variable types confusion',
+			'y Don\'t worry we\'ll try it again',
+			'hide character y with fadeOut',
+			// again
+			'jump second-c-challenge',
+		],
+		'correct-ans-for-q2':[
+			// hide violent creature
+			'hide character s with fadeOut',
+			// show freed creature
+			'show character s happy with fadeIn',
+			// success
+			'y:happy We did it again!',
+			'p:happy I\'m the best pokemon trainner EVEER!!',
+			'y Wrong game, bro...',
+			'y But yeah, you\'re the best!',
+			// fade everything out
+			'hide character s with fadeOut',
+			'show background fantasy with fadeOut 5s',
+			'stop music mainBG3 fade 2',
+			
 			'jump end-of-Casting-challenge',
 		],
 		'end-of-Casting-challenge':[
+			// show cat, sound and bg
+			'play music mainBG3 with volume 100 loop',
+			'show character y default with fadeIn', 
+			'show background fantasy with fadeIn',
+			//scene
 			'y:happy GREAT JOB! {{player.name}}',
-			'y:happy You help free those creatures from their variable types confusions',
+			'y:happy You help free both of those creatures from their variable types confusions',
 			'y What you did is called Python Casting! Where you will specify the variable type. See more here: <a href="https://www.w3schools.com/python/python_casting.asp" target="_blank" style="color: aqua;">https://www.w3schools.com/python/python_casting.asp</a>',
 			'y And do you know that data types and variables are important in programming? Yes, it is. Because a variable can store different data types, and do different things!',
 			'p:happy SOUNDS AWESOME!',
@@ -593,14 +745,22 @@ monogatari.script ({
 			'p:sad I woudn\'t have made it if it wasn\'t for you',
 			'y:happy You\'re welcome. I\'m proud of you and good luck on your career on your real world',
 			'y:happy Till we meet again!',
+			'hide character y with fadeOut',
 			'jump endo',
 		],
 		'endo':[
+			
 			'show background street with fadeIn',
 			'{{player.name}} got back',
-			'and became the best python developer in the world',
-			'YOU WIN ENDING',
-			'THANKS FOR PLAYING',
+			'p:shocked WOAW! I\'m BACK!',
+			'p:sad I must\'ve hit my self or something..',
+			'p:sad Was it all just a dream?',
+			'p Oh, well.. forgot where did I left here',
+			'p:shocked OH!, CRAP I\'M LATE FOR SHCOOL!!!',
+			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>{{player.name}} Missed 4 subjects on that day...</h2></div> ',
+			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>But {{player.name}} became the best python developer in the world</h2></div>',
+			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>The End</h2></div>',
+			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>THANKS FOR PLAYING</h2></div>',
 			'end'
 		],
 

@@ -1,3 +1,14 @@
+/* my style */
+.questions{
+	top: 70%;
+	right: 10px;
+	background: none;
+	height: 200px;
+	width: 120rem;
+	
+	
+}
+
 /**
  * =============================================================================
  * This is the file where all your styling should go in.

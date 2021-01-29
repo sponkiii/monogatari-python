@@ -4,6 +4,6 @@
 monogatari.storage ({
 	player: {
 		name: '',
-		ans: ''
+		ans: '',
 	}
 });

@@ -83,6 +83,7 @@ monogatari.assets ('scenes', {
 	'bedroom': 'bedroom-scene.png',
 	'street': 'Street-scene.png',
 	'fantasy': 'pythonworld.gif',
+	'living': 'living-room.jpg',
 	
 });
 
@@ -142,6 +143,7 @@ monogatari.characters ({
 			normal: 'main-girl-default.jpg',
 			shocked: 'main-girl-shocked.jpg',
 			dissapointed: 'main-girl-dissapointed.jpg',
+			running: 'female-run.png',
 		},
 		expressions:{
 			happy: 'expressions/main-girl-happy.jpg',
@@ -196,11 +198,16 @@ monogatari.script ({
 		'play sound bed',
 		'play music mainBG with fadeIn 2s volume 90 loop',
 		'p:shocked oh CRAP! I’m late for school!!',
+		'p:shocked waaah! where\'s my socks!??',
 		'stop sound bed',
+		'show background living with fadeIn 2s',
+		'p:happy Hello! Mr. Sun, the weather is so nice today!',
+		'p:normal hmmm the breakfast is so delicious! I want to eat more',
+		'p:shocked but I am gonna be late, so I gotta go',
 		'play sound st with volume 100',
-		'enter short prep scene',
 		// snake start
 		'show background street with wobble',
+		'show character p running at right with fadeIn end-fadeOut',
 		'p:happy Later, Mom!',
 		'p:shoced I am soooo late!',
 		'snake appeared',
@@ -219,6 +226,7 @@ monogatari.script ({
 		'p:angry I SWEAR I\'ll BITE BACK!',
 		'snake attacked and bit player',
 		'show character s snake at center',
+		'p:dissapointed kinda lazy to attend my classes today, ugh!',
 		'p:shocked ahhhhhhhhhhhh',
 		'play sound snake with volume 100',
 		'show background street with fadeOut 5s',

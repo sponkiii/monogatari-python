@@ -107,7 +107,7 @@ monogatari.characters ({
 			sad: 'expressions/catto-sad.png',
 			default: 'expressions/catto.jpg',
 			angry: 'expressions/catto-angry.png',
-			shocked: 'expressions/catto-shocked.png',
+			shocked: 'expressions/catto-shocked.jpg',
 			dissapointed: 'expressions/catto-dissapointed.jpg',
 			scat: 'expressions/scat.jpeg',
 		},
@@ -126,10 +126,18 @@ monogatari.characters ({
             b3q: 'expressions/b3-question.png',
 			b4q: 'expressions/b4-question.png',
 			snake: 'expressions/Snake-fullbody.png',
+			creature1Mad: 'expressions/creature1-fullbody.png',
+			creature1Happy: 'expressions/creature1-freed-fullbody.png',
+			creature2Mad: 'expressions/creature2-fullbody.png',
+			creature2Happy: 'expressions/creature2-freed-fullbody.png',
         },
         expressions: {
 			happy: 'expressions/minion-happy.png',
 			snake: 'expressions/Snake-face.png',
+			creature1Mad: 'expressions/monster1-face.png',
+			creature1Happy: 'expressions/freed1-face.png',
+			creature2Mad: 'expressions/monster2-face.png',
+			creature2Happy: 'expressions/freed2-face.png',
         },
 	},
 	'p': {
@@ -210,9 +218,11 @@ monogatari.script ({
 		'show character p running at right with fadeIn end-fadeOut',
 		'p:happy Later, Mom!',
 		'p:shoced I am soooo late!',
+		'p:dissapointed kinda lazy to attend my classes today, ugh!',
 		'snake appeared',
 		'show character s snake at left with fadeIn',
 		's:snake Ssssssssss....',
+		'p:shocked Waahhh!',
 		's:snake YOU!!!',
 		's:snake COME HERE KID!',
 		'p:dissapointed Damnit...',
@@ -226,10 +236,11 @@ monogatari.script ({
 		'p:angry I SWEAR I\'ll BITE BACK!',
 		'snake attacked and bit player',
 		'show character s snake at center',
-		'p:dissapointed kinda lazy to attend my classes today, ugh!',
 		'p:shocked ahhhhhhhhhhhh',
 		'play sound snake with volume 100',
 		'show background street with fadeOut 5s',
+		'hide character s with fadeOut',
+		'hide character p with fadeOut',
 		'p:shocked shit...',
 		'stop music mainBG fade 2',
 		// snake end
@@ -286,11 +297,13 @@ monogatari.script ({
 		],
 		'afterChoice': [
 			'hide character y with fadeOut',
-			'show character s happy with fadeIn',
-			'y:worried oh no! {{player.name}}, seems like we have encountered a violent creature!',
-			'y:worried These lovely ceratures gets violent reactions when people mess with their variable types.',
-			'y:worried We need to help them free from their variable types confusion',
-			'y:worried to do that, you have to use the variables on their body and assign them with their right data types seen above their head',
+			'show character s creature1Mad with fadeIn',
+			's:creature1Mad RAAAAAAAAAAWRRR!!',
+			'vibrate 200',
+			'y:shocked oh no! {{player.name}}, seems like we have encountered a violent creature!',
+			'y:shocked These lovely ceratures gets violent reactions when people mess with their variable types.',
+			'y:shocked We need to help them free from their variable types confusion',
+			'y:shocked to do that, you have to use the variables on their body and assign them with their right data types seen above their head',
 			// hiding everything
 			'hide character s with fadeOut',
 			'show background fantasy with fadeOut 5s',
@@ -303,7 +316,9 @@ monogatari.script ({
 			// background
 			'show background fantasy with fadeIn',
 			// monster
-			'show character s happy with fadeIn',
+			'show character s creature1Mad with fadeIn',
+			's:creature1Mad RAAAAAAAAAAWRRR!!',
+			'vibrate 200',
 			// sound
 			'play music mainBG3 with volume 100 loop',
 			'boy eto na first ',
@@ -335,7 +350,7 @@ monogatari.script ({
 			},
 			{'Conditional': {
 				'Condition': function () {
-					return this.storage ('player').ans == 'x = Int(5)';
+					return this.storage ('player').ans == 'a = Int(5)';
 				},
 				'True': 'jump correct-ans-for-q1',
 				'False': 'jump wrong-ans-for-q1',
@@ -344,7 +359,7 @@ monogatari.script ({
 		'wrong-ans-for-q1':[
 			'hide character s with fadeOut',
 			'show background fantasy with fadeOut 5s',
-			'stop music mainBG3 fade 2',
+			'stop music mainBG3 fade 2s',
 			'p:shocked shit...',
 			'show scene #000000 with flash',
 			'show character y default with fadeIn',
@@ -357,16 +372,19 @@ monogatari.script ({
 		],
 		'correct-ans-for-q1':[
 			// hide violent creature
-			'hide character s with fadeOut',
+			'hide character s with fadeOut 3s',
 			// show freed creature
-			'show character s happy with fadeIn',
+			'show character s creature1Happy with fadeIn 2s',
 			// success
 			'y:happy We did it!',
 			'p:happy YEEEY!!',
+			's:creature1Happy Thankyou {{player.name}}',
 			// show new violent creature
-			'show character s happy with fadeIn',
-			'y:worried Oh oh, looks like we have another one',
-			'p:worried This one\'s larger than the other one!',
+			'show character s creature2Mad with fadeIn',
+			's:creature2Mad RAAAAAAAAAAWRRR!!',
+			'vibrate 200',
+			'y:shocked Oh oh, looks like we have another one',
+			'p:shocked This one\'s larger than the other one!',
 			'p:happy Don\'t worry big fellow, we\'ll free you from your variable confusion too',
 			// fade everything out
 			'hide character s with fadeOut',
@@ -380,7 +398,9 @@ monogatari.script ({
 			// background
 			'show background fantasy with fadeIn',
 			// next monster
-			'show character s happy with fadeIn',
+			'show character s creature2Mad with fadeIn',
+			's:creature2Mad RAAAAAAAAAAWRRR!!',
+			'vibrate 200',
 			// sound
 			'play music mainBG3 with volume 100 loop', 
 			'another one!',
@@ -440,9 +460,11 @@ monogatari.script ({
 			// hide violent creature
 			'hide character s with fadeOut',
 			// show freed creature
-			'show character s happy with fadeIn',
+			'show character s creature2Happy with fadeIn 2s',
 			// success
 			'y:happy We did it again!',
+			's:creature2Happy I\'m FREEE!!!',
+			's:creature2Happy Thankyou {{player.name}}',
 			'p:happy I\'m the best pokemon trainner EVEER!!',
 			'y Wrong game, bro...',
 			'y But yeah, you\'re the best!',
@@ -765,10 +787,10 @@ monogatari.script ({
 			'p:sad Was it all just a dream?',
 			'p Oh, well.. forgot where did I left here',
 			'p:shocked OH!, CRAP I\'M LATE FOR SHCOOL!!!',
-			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>{{player.name}} Missed 4 subjects on that day...</h2></div> ',
-			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>But {{player.name}} became the best python developer in the world</h2></div>',
-			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>The End</h2></div>',
-			'centered <div style="color:white; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>THANKS FOR PLAYING</h2></div>',
+			'centered <div style="color:black; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>{{player.name}} Missed 4 subjects on that day...</h2></div> ',
+			'centered <div style="color:black; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>But {{player.name}} became the best python developer in the world</h2></div>',
+			'centered <div style="color:black; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>The End</h2></div>',
+			'centered <div style="color:black; background-color: rgba(2, 2, 2, 0.555)7, 7, 7) !important;"><h2>THANKS FOR PLAYING</h2></div>',
 			'end'
 		],
 
